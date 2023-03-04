@@ -25,7 +25,7 @@ function hisList(data) {
   }
 }
 
-function searcheddata(i) {
+function searchedData(i) {
   console.log("clicked", i);
   let click = {
       ind: i,

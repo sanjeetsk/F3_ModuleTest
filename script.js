@@ -58,9 +58,9 @@ form.addEventListener("submit", function (event) {
 
 })
 
-// btnHistory.onclick = () => {
-//     window.location.href = "history.html";
-// }
+btnHistory.onclick = () => {
+    window.location.href = "history.html";
+}
 
 
 function getTime() {
