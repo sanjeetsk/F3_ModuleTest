@@ -2,7 +2,7 @@ var form = document.getElementById("mySearch");
 var input = document.getElementById("search");
 var displayText = document.getElementById("text");
 var myDiv = document.getElementById("flex-container");
-var id = 1;
+
 
 var hist = JSON.parse(localStorage.getItem("hist") || "[]");
 var searched = JSON.parse(localStorage.getItem("searched") || "[]");
@@ -30,30 +30,35 @@ form.addEventListener("submit", function (event) {
             .then(response => response.json())
             .then(data => {
                 myDiv.innerHTML = '';
+                searched.push(data);
+                localStorage.setItem("searched", JSON.stringify(searched));
                 data.items.forEach(item => {
                     const bookTitle = item.volumeInfo.title;
                     const bookAuthors = item.volumeInfo.authors.join(', ');
                     const bookCoverUrl = item.volumeInfo.imageLinks?.thumbnail;
                     const publisher = item.volumeInfo.publisher;
                     const bookInfo = `
-          <div id="container">
-            <div id="image">
-            <img src="${bookCoverUrl}" alt="images" width="100%" height="100%">
-            
-            </div>
-            <div id="info">
-                <div id="des">
-                    <span>Title: ${bookTitle}</span>
-                </div>
-                <div>Author: ${bookAuthors}</div>
-                <div>Publisher: ${publisher}</div>
-            </div>
-          </div>
-        `;
+                        <div id="container">
+                            <div id="image">
+                                <img src="${bookCoverUrl}" alt="images" width="100%" height="100%">
+                
+                            </div>
+                            <div id="info">
+                                <div id="des">
+                                    <span>Title: ${bookTitle}</span>
+                                </div>
+                                <div>Author: ${bookAuthors}</div>
+                                <div>Publisher: ${publisher}</div>
+                            </div>
+                        </div>
+                    `;
                     myDiv.insertAdjacentHTML('beforeend', bookInfo);
                 });
             })
             .catch(error => console.log(error));
+    }
+    else{
+        alert("fill the input box");
     }
 
 })
