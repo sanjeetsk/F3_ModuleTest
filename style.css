@@ -21,6 +21,11 @@ main{
     margin-right: 15px;
 }
 
+#searchHistory{
+    list-style: none;
+}
+
+
 input[type=search]{
     width: 98%;
     height: 30px;
